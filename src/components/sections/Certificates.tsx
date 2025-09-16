@@ -99,11 +99,22 @@ const itemVariants = {
   }),
 };
 
+import React, { useState } from "react";
+
+type Certificate = {
+  title: string;
+  issuer: string;
+  date: string;
+  image: string;
+};
+
 const Certificates = () => {
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+
   return (
     <>
       <Header useMotion={true} {...config.sections.certificates} />
-      <div className="mt-10 grid gap-7 justify-center sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 flex flex-wrap gap-10 justify-center">
         {certificateList.map((cert, i) => (
           <motion.div
             key={cert.title}
@@ -116,21 +127,24 @@ const Certificates = () => {
             <Tilt
               glareEnable
               tiltEnable
-              tiltMaxAngleX={20}
-              tiltMaxAngleY={20}
+              tiltMaxAngleX={30}
+              tiltMaxAngleY={30}
               glareColor="#aaa6c3"
             >
-              <div className="bg-tertiary w-full rounded-2xl p-5 sm:w-[350px]">
-                <div className="relative h-[230px] w-full">
-                  <img
-                    src={cert.image}
-                    alt={cert.title}
-                    className="h-full w-full rounded-2xl object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="mt-5">
-                  <h3 className="text-[20px] font-bold text-white text-center">
+              <div
+                className="green-pink-gradient shadow-card w-full max-w-[250px] xs:w-[250px] rounded-[20px] p-[1px] cursor-pointer"
+                onClick={() => setSelectedCert(cert)}
+              >
+                <div className="bg-tertiary flex min-h-[280px] flex-col items-center justify-evenly rounded-[20px] px-6 py-5">
+                  <div className="relative h-[120px] w-full flex items-center justify-center">
+                    <img
+                      src={cert.image}
+                      alt={cert.title}
+                      className="h-full w-full rounded-2xl object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h3 className="text-center text-[20px] font-bold text-white mt-4">
                     {cert.title}
                   </h3>
                   <p className="text-secondary mt-2 text-[14px] text-center">
@@ -142,6 +156,49 @@ const Certificates = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Modal Popup */}
+      {selectedCert && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+          onClick={() => setSelectedCert(null)}
+        >
+          <div
+            className="green-pink-gradient shadow-card p-[2px] rounded-[20px] max-w-2xl w-full relative flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-tertiary rounded-[18px] w-full p-8 flex flex-col items-center">
+              <button
+                className="absolute top-6 right-6 text-white text-2xl font-bold bg-black bg-opacity-30 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-60 transition"
+                onClick={() => setSelectedCert(null)}
+                aria-label="Close"
+              >
+                &times;
+              </button>
+              <img
+                src={selectedCert.image}
+                alt={selectedCert.title}
+                className="w-full max-h-[400px] object-contain rounded-xl mb-6 shadow-card"
+              />
+              <h3 className="text-center text-[24px] font-bold text-white mb-2">
+                {selectedCert.title}
+              </h3>
+              <p className="text-secondary text-[16px] text-center mb-1">
+                Completion Date:{" "}
+                <span className="font-semibold text-white">
+                  {selectedCert.date}
+                </span>
+              </p>
+              <p className="text-secondary text-[16px] text-center">
+                Provider:{" "}
+                <span className="font-semibold text-white">
+                  {selectedCert.issuer}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
