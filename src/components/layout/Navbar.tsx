@@ -54,9 +54,9 @@ const Navbar = () => {
             {navLinks.map((nav) => (
               <li
                 key={nav.id}
-                className={`$
-                  active === nav.id ? "text-white" : "text-secondary"
-                } cursor-pointer text-[16px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
+                className={
+                  "text-secondary cursor-pointer text-[16px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg"
+                }
               >
                 <a href={`#${nav.id}`}>{nav.title}</a>
               </li>
@@ -80,9 +80,9 @@ const Navbar = () => {
                 {navLinks.map((nav) => (
                   <li
                     key={nav.id}
-                    className={`font-poppins cursor-pointer text-[20px] font-bold transition-all duration-200 $
-                      active === nav.id ? "text-white" : "text-secondary"
-                    } hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
+                    className={
+                      "font-poppins text-secondary cursor-pointer text-[20px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg"
+                    }
                     onClick={() => {
                       setToggle(!toggle);
                     }}

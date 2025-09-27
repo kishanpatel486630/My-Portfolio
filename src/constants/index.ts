@@ -198,7 +198,8 @@ const projects: TProject[] = [
       { name: "prototype", color: "pink-text-gradient" },
     ],
     image: figma,
-    sourceCodeLink: "https://www.behance.net/gallery/233186659/RK-Credit-First-Fintech-App-UIUX-Design", // Replace with your actual Behance project link
+    sourceCodeLink:
+      "https://www.behance.net/gallery/233186659/RK-Credit-First-Fintech-App-UIUX-Design", // Replace with your actual Behance project link
   },
   {
     name: "Loyallty Dashboard Application",
