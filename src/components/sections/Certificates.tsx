@@ -5,6 +5,7 @@ import { config } from "../../constants/config";
 import { Header } from "../atoms/Header";
 
 import figmaCert from "../../assets/certificates/figma certificate.jpg";
+import genaiCert from "../../assets/certificates/Gen AI Study Jams & GenAIus_page-0001.jpg";
 import gfgCert from "../../assets/certificates/GFG Data Science Certificate_page-0001.jpg";
 import sapFoundationCert from "../../assets/certificates/SAP Foundation Course_page-0001.jpg";
 import sapLaunchpadCert from "../../assets/certificates/SAP-Launchpad to Success_page-0001.jpg";
