@@ -99,7 +99,7 @@ const itemVariants = {
   }),
 };
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 type Certificate = {
   title: string;
@@ -136,7 +136,7 @@ const Certificates = () => {
                 onClick={() => setSelectedCert(cert)}
               >
                 <div className="bg-tertiary flex min-h-[280px] flex-col items-center justify-evenly rounded-[20px] px-6 py-5">
-                  <div className="relative h-[120px] w-full flex items-center justify-center">
+                  <div className="relative h-[150px] w-[210px] flex items-center justify-center">
                     <img
                       src={cert.image}
                       alt={cert.title}

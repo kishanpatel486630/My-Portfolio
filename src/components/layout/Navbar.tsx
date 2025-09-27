@@ -1,27 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { styles } from "../../constants/styles";
 import { navLinks } from "../../constants";
 import { logo, menu, close } from "../../assets";
 import { config } from "../../constants/config";
 
 const Navbar = () => {
-  const [active, setActive] = useState<string | null>();
   const [toggle, setToggle] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-        setActive("");
-      }
       if (scrollTop > lastScrollY && scrollTop > 100) {
         setShowNavbar(false); // scrolling down
       } else {
@@ -32,35 +23,20 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
 
-    const navbarHighlighter = () => {
-      const sections = document.querySelectorAll("section[id]");
-      sections.forEach((current) => {
-        const sectionId = current.getAttribute("id");
-        // @ts-ignore
-        const sectionHeight = current.offsetHeight;
-        const sectionTop =
-          current.getBoundingClientRect().top - sectionHeight * 0.2;
-        if (sectionTop < 0 && sectionTop + sectionHeight > 0) {
-          setActive(sectionId);
-        }
-      });
-    };
-
-    window.addEventListener("scroll", navbarHighlighter);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", navbarHighlighter);
     };
   }, []);
 
   return (
     <>
       <nav
-        className={`green-pink-gradient shadow-card fixed top-5 left-1/2 -translate-x-1/2 z-20 flex items-center justify-between py-1/2 p-[2px] rounded-[20px] w-[1000px] h-[55px] transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-32"}`}
+        className={`green-pink-gradient shadow-card fixed top-5 left-1/2 -translate-x-1/2 z-20 flex items-center justify-between p-[2px] w-[1000px] h-[80px] rounded-[40px] transition-transform duration-300 ${
+          showNavbar ? "translate-y-0" : "-translate-y-32"
+        }`}
         style={{ pointerEvents: showNavbar ? "auto" : "none" }}
       >
-        <div className="bg-tertiary flex w-full items-center justify-between rounded-[18px] px-4 py-2">
+        <div className="bg-tertiary flex w-full items-center justify-between rounded-[36px] px-8 py-4 h-full">
           <Link
             to="/"
             className="flex items-center gap-2"
@@ -69,18 +45,18 @@ const Navbar = () => {
             }}
           >
             <img src={logo} alt="logo" className="h-9 w-9 object-contain" />
-            <p className="flex cursor-pointer text-[16px] font-bold text-white ">
+            <p className="flex cursor-pointer text-[20px] font-extrabold text-white tracking-wide">
               {config.html.title}
             </p>
           </Link>
 
-          <ul className="hidden list-none flex-row gap-8 sm:flex">
+          <ul className="hidden list-none flex-row gap-6 sm:flex">
             {navLinks.map((nav) => (
               <li
                 key={nav.id}
                 className={`$
                   active === nav.id ? "text-white" : "text-secondary"
-                } cursor-pointer text-[14px] font-medium transition-all duration-200 hover:text-white hover:scale-110`}
+                } cursor-pointer text-[16px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
               >
                 <a href={`#${nav.id}`}>{nav.title}</a>
               </li>
@@ -104,9 +80,9 @@ const Navbar = () => {
                 {navLinks.map((nav) => (
                   <li
                     key={nav.id}
-                    className={`font-poppins cursor-pointer text-[16px] font-medium transition-all duration-200 $
+                    className={`font-poppins cursor-pointer text-[20px] font-bold transition-all duration-200 $
                       active === nav.id ? "text-white" : "text-secondary"
-                    } hover:text-white hover:scale-110`}
+                    } hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
                     onClick={() => {
                       setToggle(!toggle);
                     }}

@@ -24,13 +24,6 @@ import {
   git,
   figma,
   docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  carrent,
-  jobit,
-  tripguide,
   threejs,
   novusarklogo,
 } from "../assets";
@@ -170,28 +163,28 @@ const experiences: TExperience[] = [
 const testimonials: TTestimonial[] = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
+      "Kishan has been doing a great job as a UI/UX intern with us. He's shown a strong understanding of user-centered design principles, delivered clean and thoughtful designs, and has always been open to feedback. His ability to translate ideas into intuitive user experiences has been a real asset to our projects. It's great to see how quickly he's growing and taking ownership of his work.",
+    name: "Neha Shah",
+    designation: "CEO",
+    company: "Novus Ark",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
   },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-  },
+  // {
+  //   testimonial:
+  //     "I've never met a web developer who truly cares about their clients' success like Rick does.",
+  //   name: "Chris Brown",
+  //   designation: "COO",
+  //   company: "DEF Corp",
+  //   image: "https://randomuser.me/api/portraits/men/5.jpg",
+  // },
+  // {
+  //   testimonial:
+  //     "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
+  //   name: "Lisa Wang",
+  //   designation: "CTO",
+  //   company: "456 Enterprises",
+  //   image: "https://randomuser.me/api/portraits/women/6.jpg",
+  // },
 ];
 
 const projects: TProject[] = [
@@ -204,8 +197,8 @@ const projects: TProject[] = [
       { name: "ui/ux", color: "green-text-gradient" },
       { name: "prototype", color: "pink-text-gradient" },
     ],
-    image: novusarklogo,
-    sourceCodeLink: "https://www.behance.net/kishanparvadiya", // Replace with your actual Behance project link
+    image: figma,
+    sourceCodeLink: "https://www.behance.net/gallery/233186659/RK-Credit-First-Fintech-App-UIUX-Design", // Replace with your actual Behance project link
   },
   {
     name: "Loyallty Dashboard Application",
