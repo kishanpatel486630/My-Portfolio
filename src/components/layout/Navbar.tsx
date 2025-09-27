@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { navLinks } from "../../constants";
+import ResumeModal from "../sections/ResumeModal";
 import { logo, menu, close } from "../../assets";
 import { config } from "../../constants/config";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -31,12 +33,12 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`green-pink-gradient shadow-card fixed top-5 left-1/2 -translate-x-1/2 z-20 flex items-center justify-between p-[2px] w-[1000px] h-[80px] rounded-[40px] transition-transform duration-300 ${
+        className={`green-pink-gradient shadow-card fixed top-5 left-1/2 -translate-x-1/2 z-20 flex items-center justify-between p-[2px] w-[1150px] h-[80px] rounded-[40px] transition-transform duration-300 ${
           showNavbar ? "translate-y-0" : "-translate-y-32"
         }`}
         style={{ pointerEvents: showNavbar ? "auto" : "none" }}
       >
-        <div className="bg-tertiary flex w-full items-center justify-between rounded-[36px] px-8 py-4 h-full">
+        <div className="bg-tertiary flex w-full items-center justify-end gap-8 rounded-[36px] px-8 py-4 h-full">
           <Link
             to="/"
             className="flex items-center gap-2"
@@ -45,12 +47,12 @@ const Navbar = () => {
             }}
           >
             <img src={logo} alt="logo" className="h-9 w-9 object-contain" />
-            <p className="flex cursor-pointer text-[20px] font-extrabold text-white tracking-wide">
+            <p className="cursor-pointer text-[20px] font-extrabold text-white tracking-wide whitespace-nowrap">
               {config.html.title}
             </p>
           </Link>
 
-          <ul className="hidden list-none flex-row gap-6 sm:flex">
+          <ul className="hidden list-none flex-row gap-6 sm:flex justify-end items-center w-full">
             {navLinks.map((nav) => (
               <li
                 key={nav.id}
@@ -61,6 +63,21 @@ const Navbar = () => {
                 <a href={`#${nav.id}`}>{nav.title}</a>
               </li>
             ))}
+            {/* Resume Button */}
+            <li>
+              <button
+                type="button"
+                onClick={() => setResumeOpen(true)}
+                className="green-pink-gradient shadow-card rounded-[16px] p-[2px] cursor-pointer ml-4"
+                style={{ display: "inline-block" }}
+              >
+                <div className="bg-tertiary flex items-center justify-center rounded-[16px] px-6 py-2">
+                  <span className="text-white font-bold text-[16px]">
+                    Resume
+                  </span>
+                </div>
+              </button>
+            </li>
           </ul>
 
           <div className="flex flex-1 items-center justify-end sm:hidden">
@@ -90,11 +107,34 @@ const Navbar = () => {
                     <a href={`#${nav.id}`}>{nav.title}</a>
                   </li>
                 ))}
+                {/* Resume Button for mobile */}
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => setResumeOpen(true)}
+                    className="green-pink-gradient shadow-card rounded-[20px] p-[2px] border-2 border-transparent bg-clip-padding cursor-pointer"
+                    style={{
+                      display: "inline-block",
+                      border: "none",
+                      background: "none",
+                      width: "180px",
+                      height: "56px",
+                    }}
+                  >
+                    <div className="bg-tertiary flex items-center justify-center rounded-[18px] w-full h-full">
+                      <span className="text-white font-bold text-[18px]">
+                        Resume
+                      </span>
+                    </div>
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
         </div>
       </nav>
+      {/* Resume Modal Popup */}
+      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
       {/* Scroll to top button */}
       <button
         onClick={() => {

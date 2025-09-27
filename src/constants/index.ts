@@ -75,58 +75,58 @@ const services: TService[] = [
 ];
 
 const technologies: TTechnology[] = [
-  {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
-    name: "CSS 3",
-    icon: css,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
-    name: "git",
-    icon: git,
-  },
-  {
-    name: "figma",
-    icon: figma,
-  },
-  {
-    name: "docker",
-    icon: docker,
-  },
+  // {
+  //   name: "HTML 5",
+  //   icon: html,
+  // },
+  // {
+  //   name: "CSS 3",
+  //   icon: css,
+  // },
+  // {
+  //   name: "JavaScript",
+  //   icon: javascript,
+  // },
+  // {
+  //   name: "TypeScript",
+  //   icon: typescript,
+  // },
+  // {
+  //   name: "React JS",
+  //   icon: reactjs,
+  // },
+  // {
+  //   name: "Redux Toolkit",
+  //   icon: redux,
+  // },
+  // {
+  //   name: "Tailwind CSS",
+  //   icon: tailwind,
+  // },
+  // {
+  //   name: "Node JS",
+  //   icon: nodejs,
+  // },
+  // {
+  //   name: "MongoDB",
+  //   icon: mongodb,
+  // },
+  // {
+  //   name: "Three JS",
+  //   icon: threejs,
+  // },
+  // {
+  //   name: "git",
+  //   icon: git,
+  // },
+  // {
+  //   name: "figma",
+  //   icon: figma,
+  // },
+  // {
+  //   name: "docker",
+  //   icon: docker,
+  // },
 ];
 
 const experiences: TExperience[] = [
@@ -165,9 +165,9 @@ const testimonials: TTestimonial[] = [
     testimonial:
       "Kishan has been doing a great job as a UI/UX intern with us. He's shown a strong understanding of user-centered design principles, delivered clean and thoughtful designs, and has always been open to feedback. His ability to translate ideas into intuitive user experiences has been a real asset to our projects. It's great to see how quickly he's growing and taking ownership of his work.",
     name: "Neha Shah",
-    designation: "CEO",
-    company: "Novus Ark",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    designation: "CoO & Co-Founder",
+    company: "Novus Ark & Cutting Edge Infotech",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyt4GqXYVTYYj-jU8ygW20SUvyJjI4TV-fdQ&s",
   },
   // {
   //   testimonial:
