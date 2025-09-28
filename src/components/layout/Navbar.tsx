@@ -30,6 +30,26 @@ const Navbar = () => {
     };
   }, []);
 
+  // Track active section for highlighting
+  const [activeSection, setActiveSection] = useState<string>(navLinks[0].id);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map((nav) => document.getElementById(nav.id));
+      const scrollY = window.scrollY + 120; // Offset for navbar height
+      let currentSection = navLinks[0].id;
+      for (const section of sections) {
+        if (section && section.offsetTop <= scrollY) {
+          currentSection = section.id;
+        }
+      }
+      setActiveSection(currentSection);
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <nav
@@ -44,6 +64,7 @@ const Navbar = () => {
             className="flex items-center gap-2"
             onClick={() => {
               window.scrollTo(0, 0);
+              setActiveSection("");
             }}
           >
             <img src={logo} alt="logo" className="h-9 w-9 object-contain" />
@@ -56,11 +77,25 @@ const Navbar = () => {
             {navLinks.map((nav) => (
               <li
                 key={nav.id}
-                className={
-                  "text-secondary cursor-pointer text-[16px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg"
-                }
+                className={`${
+                  activeSection === nav.id ? "text-white" : "text-secondary"
+                } cursor-pointer text-[16px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
               >
-                <a href={`#${nav.id}`}>{nav.title}</a>
+                <a
+                  href={`#${nav.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const section = document.getElementById(nav.id);
+                    if (section) {
+                      window.scrollTo({
+                        top: section.offsetTop - 120,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                >
+                  {nav.title}
+                </a>
               </li>
             ))}
             {/* Resume Button */}
@@ -97,10 +132,11 @@ const Navbar = () => {
                 {navLinks.map((nav) => (
                   <li
                     key={nav.id}
-                    className={
-                      "font-poppins text-secondary cursor-pointer text-[20px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg"
-                    }
+                    className={`${
+                      activeSection === nav.id ? "text-white" : "text-secondary"
+                    } font-poppins cursor-pointer text-[20px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
                     onClick={() => {
+                      setActiveSection(nav.id);
                       setToggle(!toggle);
                     }}
                   >

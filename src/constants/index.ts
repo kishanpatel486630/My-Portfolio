@@ -7,26 +7,9 @@ import type {
   TProject,
 } from "../types";
 
-import {
-  mobile,
-  backend,
-  creator,
-  web,
-  javascript,
-  typescript,
-  html,
-  css,
-  reactjs,
-  redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  docker,
-  threejs,
-  novusarklogo,
-} from "../assets";
+import { mobile, backend, creator, web, figma, novusarklogo } from "../assets";
+
+// Removed unused tech asset imports to fix TS6133 errors
 
 export const navLinks: TNavLink[] = [
   {
@@ -167,7 +150,8 @@ const testimonials: TTestimonial[] = [
     name: "Neha Shah",
     designation: "CoO & Co-Founder",
     company: "Novus Ark & Cutting Edge Infotech",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyt4GqXYVTYYj-jU8ygW20SUvyJjI4TV-fdQ&s",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyt4GqXYVTYYj-jU8ygW20SUvyJjI4TV-fdQ&s",
   },
   // {
   //   testimonial:
