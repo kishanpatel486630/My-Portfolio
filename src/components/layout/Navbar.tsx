@@ -150,70 +150,69 @@ const Navbar = () => {
             <img
               src={toggle ? close : menu}
               alt="menu"
-              className="h-[28px] w-[28px] object-contain"
-              onClick={() => setToggle(!toggle)}
+              className="h-[32px] w-[32px] object-contain cursor-pointer"
+              onClick={() => setToggle(true)}
             />
 
+            {/* Side Drawer Menu */}
             <div
-              className={`fixed inset-0 z-40 bg-black bg-opacity-80 transition-all duration-300 ${
-                toggle ? "flex" : "hidden"
+              className={`fixed top-0 right-0 h-screen w-[80vw] max-w-[350px] z-50 bg-tertiary shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${
+                toggle ? "translate-x-0" : "translate-x-full"
               }`}
               style={{
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
+                borderTopLeftRadius: "2rem",
+                borderBottomLeftRadius: "2rem",
               }}
             >
-              <div className="w-full max-w-xs bg-tertiary rounded-xl m-4 p-6">
-                <ul className="flex flex-1 list-none flex-col items-center justify-center gap-4">
-                  {navLinks.map((nav) => (
-                    <li
-                      key={nav.id}
-                      className={`${
-                        activeSection === nav.id
-                          ? "text-white"
-                          : "text-secondary"
-                      } font-poppins cursor-pointer text-[20px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const section = document.getElementById(nav.id);
-                        if (section) {
-                          section.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                          setTimeout(() => {
-                            const rect = section.getBoundingClientRect();
-                            if (
-                              rect.top >= 0 &&
-                              rect.bottom <= window.innerHeight
-                            ) {
-                              setActiveSection(nav.id);
-                            }
-                          }, 500);
-                        }
-                        setToggle(!toggle);
-                      }}
-                    >
-                      <a href={`#${nav.id}`}>{nav.title}</a>
-                    </li>
-                  ))}
-                  {/* Resume Button for mobile */}
-                  <li className="w-full mt-4">
-                    <button
-                      type="button"
-                      onClick={() => setResumeOpen(true)}
-                      className="green-pink-gradient shadow-card rounded-[20px] p-[2px] w-full cursor-pointer"
-                    >
-                      <div className="bg-tertiary flex items-center justify-center rounded-[18px] w-full h-full px-6 py-3">
-                        <span className="text-white font-bold text-[18px]">
-                          Resume
-                        </span>
-                      </div>
-                    </button>
+              {/* Close Button */}
+              <button
+                className="self-end m-4 text-white text-3xl font-bold focus:outline-none"
+                aria-label="Close menu"
+                onClick={() => setToggle(false)}
+              >
+                &times;
+              </button>
+              <ul className="flex flex-col flex-1 items-center justify-center gap-6 mt-2">
+                {navLinks.map((nav) => (
+                  <li
+                    key={nav.id}
+                    className={`w-full text-center ${
+                      activeSection === nav.id ? "text-white" : "text-secondary"
+                    } font-poppins cursor-pointer text-[2rem] font-bold transition-all duration-200 hover:text-white hover:scale-105 py-3 rounded-lg`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const section = document.getElementById(nav.id);
+                      if (section) {
+                        section.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                        setActiveSection(nav.id);
+                      }
+                      setToggle(false);
+                    }}
+                  >
+                    <a href={`#${nav.id}`}>{nav.title}</a>
                   </li>
-                </ul>
-              </div>
+                ))}
+                {/* Resume Button for mobile */}
+                <li className="w-full mt-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setResumeOpen(true);
+                      setToggle(false);
+                    }}
+                    className="green-pink-gradient shadow-card rounded-[20px] p-[2px] w-full cursor-pointer"
+                  >
+                    <div className="bg-tertiary flex items-center justify-center rounded-[18px] w-full h-full px-6 py-3">
+                      <span className="text-white font-bold text-[1.3rem]">
+                        Resume
+                      </span>
+                    </div>
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
