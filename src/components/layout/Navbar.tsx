@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// Removed Link import to prevent router navigation for logo
 
 import { navLinks } from "../../constants";
 import ResumeModal from "../sections/ResumeModal";
@@ -59,19 +59,26 @@ const Navbar = () => {
         style={{ pointerEvents: showNavbar ? "auto" : "none" }}
       >
         <div className="bg-tertiary flex w-full items-center justify-end gap-8 rounded-[36px] px-8 py-4 h-full">
-          <Link
-            to="/"
+          <a
+            href="#about"
             className="flex items-center gap-2"
-            onClick={() => {
-              window.scrollTo(0, 0);
-              setActiveSection("");
+            onClick={(e) => {
+              e.preventDefault();
+              const section = document.getElementById("about");
+              if (section) {
+                window.scrollTo({
+                  top: section.offsetTop - 120,
+                  behavior: "smooth",
+                });
+                setActiveSection("about");
+              }
             }}
           >
             <img src={logo} alt="logo" className="h-9 w-9 object-contain" />
             <p className="cursor-pointer text-[20px] font-extrabold text-white tracking-wide whitespace-nowrap">
               {config.html.title}
             </p>
-          </Link>
+          </a>
 
           <ul className="hidden list-none flex-row gap-6 sm:flex justify-end items-center w-full">
             {navLinks.map((nav) => (
@@ -87,10 +94,11 @@ const Navbar = () => {
                     e.preventDefault();
                     const section = document.getElementById(nav.id);
                     if (section) {
-                      window.scrollTo({
-                        top: section.offsetTop - 120,
+                      section.scrollIntoView({
                         behavior: "smooth",
+                        block: "start",
                       });
+                      setTimeout(() => setActiveSection(nav.id), 400);
                     }
                   }}
                 >
@@ -135,8 +143,16 @@ const Navbar = () => {
                     className={`${
                       activeSection === nav.id ? "text-white" : "text-secondary"
                     } font-poppins cursor-pointer text-[20px] font-bold transition-all duration-200 hover:text-white hover:scale-105 px-2 py-1 rounded-lg`}
-                    onClick={() => {
-                      setActiveSection(nav.id);
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const section = document.getElementById(nav.id);
+                      if (section) {
+                        window.scrollTo({
+                          top: section.offsetTop - 120,
+                          behavior: "smooth",
+                        });
+                        setActiveSection(nav.id);
+                      }
                       setToggle(!toggle);
                     }}
                   >
