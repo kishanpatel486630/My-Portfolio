@@ -8,6 +8,7 @@ import type {
 } from "../types";
 
 import { mobile, backend, creator, web, figma, novusarklogo } from "../assets";
+// All unused tech asset imports removed to fix TS6133 errors
 
 // Removed unused tech asset imports to fix TS6133 errors
 
